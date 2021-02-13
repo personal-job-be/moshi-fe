@@ -1,9 +1,17 @@
 <template>
   <div>
+    <navbar />
     <Nuxt />
   </div>
 </template>
-
+<script>
+import Navbar from "@/components/navbar"
+export default {
+  components: {
+    Navbar,
+  },
+}
+</script>
 <style>
 html {
   font-family:
