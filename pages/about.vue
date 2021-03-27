@@ -20,6 +20,9 @@
           kami memutuskan untuk mengambil peluang tersebut sehingga pada bulan November 2019 kami mulai beroperasi dengan dukungan para therapis professional 
           yang pastinya menjamin kebutuhan relaksasi anda terpenuhi bersama kami.
         </span>
+        <br>
+        <br>
+        <img src="/about.png">
       </div>
     </div>
     <div class="column">

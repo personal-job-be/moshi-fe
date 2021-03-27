@@ -21,6 +21,7 @@
       </div>
       <div class="column is-4">
         <div class="ml-4 title is-5  has-text-white">Our Instagram : </div>
+        <div class="ml-4 title is-5  has-text-white ">@moshimassage </div>
       </div>
       <div class="column is-4">
         <div class="ml-4 title is-5  has-text-white">Google Maps : </div>
