@@ -17,8 +17,8 @@ export default {
   data() {
     return {
       gallery: [
-        '/galery0.jpg', '/galery3.jpg', '/galery2.jpg', '/galery1.jpg', '/galery4.jpg', '/galery5.jpg', '/galery6.jpg', '/galery7.jpg',
-        '/testi3.jpg', '/testi2.jpg', '/testi1.jpg'
+        'galery0.jpg', 'galery3.jpg', 'galery2.jpg', 'galery1.jpg', 'galery4.jpg', 'galery5.jpg', 'galery6.jpg', 'galery7.jpg',
+        'testi3.jpg', 'testi2.jpg', 'testi1.jpg'
       ]
     }
   },
