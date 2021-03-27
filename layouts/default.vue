@@ -1,14 +1,17 @@
 <template>
-  <div>
+  <div style="background-image: url('logo.png')">
     <navbar />
     <Nuxt />
+    <footer-page class="mt-3"/>
   </div>
 </template>
 <script>
 import Navbar from "@/components/navbar"
+import footerPage from "@/components/footerPage"
 export default {
   components: {
     Navbar,
+    footerPage
   },
 }
 </script>

@@ -3,7 +3,7 @@
       <b-carousel
           :progress="progress"
           :progress-type="progressType">
-          <b-carousel-item v-for="(carousel, i) in carousels" :key="i">
+          <b-carousel-item v-for="(carousel, i) in carousels" :key="i" repeat=true>
             <img :src="carousel.img" alt="" srcset="" width="100%" height= "50%">
           </b-carousel-item>
       </b-carousel>
@@ -17,10 +17,12 @@ export default {
             progress: true,
             progressType: 'is-primary',
             carousels: [
-                { title: 'Slide 1', color: 'grey', img : "back1.jpg" },
-                { title: 'Slide 2', color: 'dark', img : "back2.jpg" },
-                { title: 'Slide 3', color: 'primary', img : 'back3.jpg' },
-                { title: 'Slide 4', color: 'info', img: 'back4.jpg'}
+                { img : "back1.jpg" },
+                { img : "back2.jpg" },
+                { img : 'back6.jpg' },
+                { img: 'back4.jpg'},
+                { img: 'back5.jpg'},
+                { img: 'back3.jpg'}
             ]
         }
     }
