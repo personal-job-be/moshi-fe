@@ -31,12 +31,18 @@
               </div>
             </div> -->
           </div>
+          <div class="is-flex is-justify-content-center">
+            <b-button class="is-danger " @click="showModal(data)">Detail</b-button>
+          </div>
+          <br>
+          <div class="is-flex is-justify-content-center">
+            <b-button class="is-success" @click="whatsapp(data)">Reservasi-1</b-button>
+            <b-button class="is-success ml-2" @click="whatsapp(data)">Reservasi-2</b-button>
+          </div>
           <div class="columns is-centered">
             <div class="column is-6">
-              <b-button class="is-info is-pulled-right" @click="showModal(data)">Detail Paket</b-button>
             </div>
             <div class="column is-6 ">
-              <b-button class="is-success" @click="whatsapp(data)">Reservasi</b-button>
             </div>
           </div>
         </div>     

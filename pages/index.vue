@@ -15,7 +15,7 @@
       <div class="column is-4">
         <img src="package.png" alt="" srcset="">
       </div>
-      <div class= "mt-6">
+      <div class= "box mt-6">
         <span class="title is-2 brown">Relaxation</span> 
         <span class="subtitle is-2"> In All Our </span> 
         <span class="title is-2 brown">Services</span>
