@@ -32,7 +32,8 @@
       
     </section>
     <footer class="modal-card-foot is-justify-content-center">
-      <b-button class="is-success" @click="whatsapp(data)">Reservasi</b-button>
+      <b-button class="is-success" @click="whatsapp(data,1)">Reservasi-1</b-button>
+      <b-button class="is-success" @click="whatsapp(data,2)">Reservasi-2</b-button>
     </footer>
   </div>
 </template>
@@ -47,11 +48,19 @@ export default {
     },
   },
   methods: {
-    whatsapp(service) {
-      window.open(
-      'https://api.whatsapp.com/send?phone=+62818763058'+
-        `&text=Hi saya mau reservasi pijat ${service.title} untuk hari ini : %0aAtas nama : %0aJam Kedatangan : %0aJenis Pijatan : ${service.title} %0aDurasi : ${service.duration} %0aHarga : ${service.price}`
-      )
+    whatsapp(service,to) {
+      if(to === 1)
+        window.open(
+        'https://api.whatsapp.com/send?phone=+62818763058'+
+          `&text=Hi saya mau reservasi pijat ${service.title} untuk hari ini : %0aAtas nama : %0aJam Kedatangan : %0aJenis Pijatan : ${service.title} %0aDurasi : ${service.duration} %0aHarga : ${service.price}
+          %0a%0a (Tolong isi Atas Nama dan Jam Kedatangan - Harap datang 15 menit sebelumnya Terima Kasih)`
+        )
+      else
+        window.open(
+        'https://api.whatsapp.com/send?phone=+6281391051203'+
+          `&text=Hi saya mau reservasi pijat ${service.title} untuk hari ini : %0aAtas nama : %0aJam Kedatangan : %0aJenis Pijatan : ${service.title} %0aDurasi : ${service.duration} %0aHarga : ${service.price}
+          %0a%0a (Tolong isi Atas Nama dan Jam Kedatangan - Harap datang 15 menit sebelumnya Terima Kasih)`
+        )
     }
   },
 }

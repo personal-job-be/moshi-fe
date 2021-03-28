@@ -5,18 +5,18 @@
         <p class="title is-1 has-text-centered brown mt-5">About Us</p>
         <span> 
           <img src="/letter1.png" width="30%">
-          hadir di kota Probolinggo yang berlokasi di Jl. Kartini 67, kami siap memberikan pelayanan terbaik untuk memenuhi kebutuhan relaxasi anda dari kesibukan anda sehari-hari.
+          hadir di kota Probolinggo yang berlokasi di Jl. Kartini 67, kami siap memberikan pelayanan terbaik untuk memenuhi kebutuhan relaksasi anda dari kesibukan anda sehari-hari.
         </span>
         <br>
         <br>
         <span>
-          Aktifitas sehari-hari yang semakin hectic yang diikuti dengan tingkat stress yang begitu tinggi dari waktu ke waktu, membuat kebutuhan Pijat dan Relaxasi menjadi kebutuhan utama dalam 
-          menjaga agar kondisi badan menjadi tetap fi. 
+          Aktifitas sehari-hari yang semakin hectic yang diikuti dengan tingkat stress yang begitu tinggi dari waktu ke waktu, membuat kebutuhan Pijat dan Relaksasi menjadi kebutuhan utama dalam 
+          menjaga agar kondisi badan menjadi tetap fit dan bugar. 
         </span>
         <br>
         <br>
         <span>
-          Melihat animo masyarakat Probolinggo akan kebutuhan Pijat dan Relaxasi yang begitu tinggi
+          Melihat animo masyarakat Probolinggo akan kebutuhan Pijat dan Relaksasi yang begitu tinggi
           kami memutuskan untuk mengambil peluang tersebut sehingga pada bulan November 2019 kami mulai beroperasi dengan dukungan para therapis professional 
           yang pastinya menjamin kebutuhan relaksasi anda terpenuhi bersama kami.
         </span>

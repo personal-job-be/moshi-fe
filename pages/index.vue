@@ -82,8 +82,11 @@
             </b-table-column>
 
             <b-table-column field="reservasi" label="Reservasi" v-slot="props">
-              <b-button type="is-success" @click="whatsapp(props.row)">
-                Reservasi
+              <b-button type="is-success" @click="whatsapp(props.row,1)">
+                Reservasi-1
+              </b-button>
+              <b-button type="is-success" @click="whatsapp(props.row,2)">
+                Reservasi-2
               </b-button>
             </b-table-column>
         </b-table>
@@ -106,15 +109,22 @@
             </b-table-column>
 
             <b-table-column field="reservasi" label="Reservasi" v-slot="props">
-              <b-button type="is-success" @click="whatsapp(props.row)">
-                Reservasi
+              <b-button type="is-success" @click="whatsapp(props.row,1)">
+                Reservasi-1
+              </b-button>
+              <b-button type="is-success" @click="whatsapp(props.row,2)">
+                Reservasi-2
               </b-button>
             </b-table-column>
         </b-table>
         <p class="subtitle is-6">Refleksi adalah teknik pijatan yang melibatkan beberapa tekanan yang berbeda para kaki, tangan, punggung dan kepala.
 Dimana berdasarkan teory bahwa bagian-bagian tubuh tersebut terhubung dengan seluruh organ tubuh dan sistem tubuh</p>
       </div>
-    </div>    
+    </div>  
+
+    <div class="is-flex is-justify-content-center">
+      <img src="/about.png" width="75%">  
+    </div>
   </div>
 </template>
 
@@ -206,16 +216,18 @@ export default {
     }
   },
   methods: {
-    whatsapp(service) {
-      if(service !== null)
+    whatsapp(service, to) {
+      if(to === 1)
         window.open(
         'https://api.whatsapp.com/send?phone=+62818763058'+
-          `&text=Hi saya mau reservasi pijat ${service.title} untuk hari ini : %0aAtas nama : %0aJam Kedatangan : %0aJenis Pijatan : ${service.title} %0aDurasi : ${service.duration} %0aHarga : ${service.price}`
+          `&text=Hi saya mau reservasi pijat ${service.title} untuk hari ini : %0aAtas nama : %0aJam Kedatangan : %0aJenis Pijatan : ${service.title} %0aDurasi : ${service.duration} %0aHarga : ${service.price}
+          %0a%0a (Tolong isi Atas Nama dan Jam Kedatangan - Harap datang 15 menit sebelumnya Terima Kasih)`
         )
       else
         window.open(
-        'https://api.whatsapp.com/send?phone=+62818763058'+
-          `&text=Hi saya mau reservasi pijat untuk hari ini : %0aAtas nama : %0aJam Kedatangan : `
+        'https://api.whatsapp.com/send?phone=+6281391051203'+
+          `&text=Hi saya mau reservasi pijat ${service.title} untuk hari ini : %0aAtas nama : %0aJam Kedatangan : %0aJenis Pijatan : ${service.title} %0aDurasi : ${service.duration} %0aHarga : ${service.price}
+          %0a%0a (Tolong isi Atas Nama dan Jam Kedatangan - Harap datang 15 menit sebelumnya Terima Kasih)`
         )
     }
   },

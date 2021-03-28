@@ -1,6 +1,6 @@
 <template>
   <!-- FOOTER -->
-  <div class="footer-page">
+  <div class="footer-page mt-2">
     
     <div class="columns">
       <div class="column is-4">
@@ -14,14 +14,24 @@
           Belakang RSUD Moch Saleh
         </div>
         <div class="ml-4 mt-3 title is-5 has-text-white">Contact us : 
-          <b-button class="is-success" @click="whatsapp(null)">Contact Now</b-button>
+          <br>
+          <br>
+          <b-button class="is-success" @click="whatsapp(1)">Contact Person (1)</b-button>
+          <b-button class="is-success" @click="whatsapp(2)">Contact Person (2)</b-button>
         </div>
-        <div class="ml-5 subtitle is-5 has-text-white">whatsapp - 081 876 3058</div>
 
       </div>
       <div class="column is-4">
         <div class="ml-4 title is-5  has-text-white">Our Instagram : </div>
-        <div class="ml-4 title is-5  has-text-white ">@moshimassage </div>
+        <div class="columns is-vcentered">
+          <div class="column is-2">
+            <img src="instagram.png">
+          </div>
+          <div class="column">
+            <div class="title is-5  has-text-white">@moshimassage </div>
+          </div>
+        </div>
+
       </div>
       <div class="column is-4">
         <div class="ml-4 title is-5  has-text-white">Google Maps : </div>
@@ -31,14 +41,27 @@
     <div class="has-text-centered has-text-light">
       created by reza limena WA - 0818763058
     </div>
-
-
-    
   </div>
 </template>
 
 <script>
 export default {
+  methods: {
+    whatsapp(to) {
+      if(to === 1)
+        window.open(
+        'https://api.whatsapp.com/send?phone=+62818763058'+
+          `&text=Hi saya mau reservasi pijat untuk hari ini : %0aAtas nama : %0aJam Kedatangan : %0aJenis Pijatan : 
+          %0a%0a (Tolong isi Atas Nama, Jam Kedatangan, Jenis Pijatan - Harap datang 15 menit sebelumnya Terima Kasih)`
+        )
+      else
+        window.open(
+        'https://api.whatsapp.com/send?phone=+6281391051203'+
+          `&text=Hi saya mau reservasi pijat untuk hari ini : %0aAtas nama : %0aJam Kedatangan : %0aJenis Pijatan : 
+          %0a%0a (Tolong isi Atas Nama, Jam Kedatangan, Jenis Pijatan - Harap datang 15 menit sebelumnya Terima Kasih)`
+        )
+    }
+  },
 
 }
 </script>
@@ -48,4 +71,5 @@ export default {
 .footer-page {
   background-color: #517f2f;
 }
+
 </style>
