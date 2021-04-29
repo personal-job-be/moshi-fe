@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "moshi467ff245": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}

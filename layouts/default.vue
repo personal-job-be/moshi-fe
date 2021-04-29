@@ -13,6 +13,17 @@ export default {
     Navbar,
     footerPage
   },
+  data() {
+    return {
+
+    }
+  },
+  mounted () {
+  },
+
+  methods: {
+
+  },
 }
 </script>
 <style>

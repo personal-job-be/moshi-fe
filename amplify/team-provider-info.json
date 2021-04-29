@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-moshi-dev-222531-authRole",
+      "UnauthRoleArn": "arn:aws:iam::896363855843:role/amplify-moshi-dev-222531-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::896363855843:role/amplify-moshi-dev-222531-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-moshi-dev-222531-deployment",
+      "UnauthRoleName": "amplify-moshi-dev-222531-unauthRole",
+      "StackName": "amplify-moshi-dev-222531",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:896363855843:stack/amplify-moshi-dev-222531/a6262590-a6a3-11eb-bea5-0687727c192e",
+      "AmplifyAppId": "dxgwe35eyj3hi"
+    },
+    "categories": {
+      "auth": {
+        "moshi467ff245": {}
+      }
+    }
+  }
+}

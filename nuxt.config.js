@@ -1,6 +1,9 @@
 export default {
-  target: "static", 
   // Global page headers: https://go.nuxtjs.dev/config-head
+  ssr : false,
+  server: {
+    port: 8080 // default: 3000
+  },
   head: {
     title: 'Moshi Moshi Family Massage & Reflexology',
     htmlAttrs: {
@@ -17,11 +20,13 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+  css: ['@mdi/font/css/materialdesignicons.min.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/auth.js',
+    { src: '~/plugins/amplify.js', mode: 'client' },
+    // { src: '~/plugins/persisted.js'},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -43,5 +48,21 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+
+  serverMiddleware: [
+    '~/api/user',
+    '~/api/types',
+    '~/api/therapists',
+    '~/api/promos',
+    '~/api/members',
+    '~/api/htransaction',
+    '~/api/dtransaction',
+    '~/api/absence'
+  ],
+
+  publicRuntimeConfig: {
+    BASE_URL: process.env.BASE_URL,
+    API_URL: process.env.API_URL,
+  },
 }
