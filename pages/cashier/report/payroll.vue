@@ -127,7 +127,8 @@
                 {{parseInt(index) + parseInt(startDate)}} : 
                 <b-switch v-model="isSwitchedCustom[index + parseInt(startDate) - 1]"
                     true-value="Masuk"
-                    false-value="Tidak">
+                    false-value="Tidak"
+                    disabled>
                     {{ isSwitchedCustom[index  + parseInt(startDate) - 1] }}
                 </b-switch>
               </div>

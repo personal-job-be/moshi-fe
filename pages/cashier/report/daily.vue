@@ -22,9 +22,9 @@
                 >
                 </b-icon>
               </b-button>
-              <b-button class="is-primary" @click="print">        
+              <!-- <b-button class="is-primary" @click="print">        
                 print
-              </b-button>
+              </b-button> -->
             </div>
           </div>
         </div>
