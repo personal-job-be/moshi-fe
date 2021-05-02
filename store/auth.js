@@ -49,6 +49,7 @@ export const actions = {
   },
 
   async forgot(_, { email }) {
+    console.log(email);
     const user = await Auth.forgotPassword(email)
     return user
   },

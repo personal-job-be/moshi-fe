@@ -65,5 +65,7 @@ export default {
   publicRuntimeConfig: {
     BASE_URL: process.env.BASE_URL,
     API_URL: process.env.API_URL,
+    ADMIN_USER: process.env.ADMIN_USER,
+    ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
   },
 }

@@ -213,6 +213,7 @@
         Total : {{`Rp. ${parseFloat(htrans.total).toLocaleString('id-ID')}`}}
       </div>
       <div class="is-flex is-justify-content-center">
+        <b-button class="is-success mr-2" @click="print">Print Nota</b-button>
         <b-button class="is-primary" @click="fetchData">Transaksi Baru</b-button>
       </div>
     </div>
@@ -630,8 +631,10 @@ export default {
 
     transactionUpdate(data) {
       this.fetchData()
+      console.log(data);
       this.member = data.member
       this.massage.note = data.id
+      this.htrans.note = data.note
       this.fetchTrans()
       this.isFirst = false
     },
@@ -661,6 +664,10 @@ export default {
         this.$router.push('/')
       }
     },
+
+    print() {
+      window.open(`/cashier/report/${this.massage.note}`)
+    }
   },
 
 }

@@ -8,20 +8,31 @@
         <!-- Register -->
         <div v-if="step === steps.register">
           <span class="title is-6">Email :</span>
-          <input
+          <b-input
             v-model="registerForm.email"
             type="email"
             placeholder="Email"
             class="form-control"
+            password-reveal
           />
-          <br />
-          <div class="mt-5">
+          <div class="mt-1">
             <span class="title is-6">Password :</span>
-            <input
+            <b-input
               v-model="registerForm.password"
-              type="password"
               placeholder="Password"
+              type="password"
               class="form-control"
+              password-reveal
+            />
+          </div>
+          <div class="mt-1">
+            <span class="title is-6">Konfirmasi Password :</span>
+            <b-input
+              v-model="registerForm.confirmPassword"
+              placeholder="Konfirmasi Password"
+              type="password"
+              class="form-control"
+              password-reveal
             />
           </div>
           <b-button type="submit" class="is-success mt-3" @click="register"
@@ -31,16 +42,15 @@
 
         <div v-else @submit.prevent="confirm">
           <span class="title is-6">Email :</span>
-          <input
+          <b-input
             v-model="confirmForm.email"
             type="email"
             placeholder="Email"
             class="form-control"
           />
-          <br />
-          <div class="mt-5">
-            <span class="title is-6">Password :</span>
-            <input
+          <div class="mt-1">
+            <span class="title is-6">Kode Konfirmasi :</span>
+            <b-input
               v-model="confirmForm.code"
               placeholder="Code"
               class="form-control"
@@ -52,7 +62,7 @@
           >
         </div>
 
-        <nuxt-link to="/login">Have an account? Login</nuxt-link>
+        <nuxt-link to="/auth/cashier">Have an account? Login</nuxt-link>
       </div>
     </div>
   </div>
@@ -69,13 +79,71 @@ export default {
     steps: { ...steps },
     step: steps.register,
     registerForm: {
-      email: '',
-      password: '',
+      email: null,
+      password: null,
+      confirmPassword: null,
     },
     confirmForm: {
       email: '',
       code: '',
     },
+    user: [
+      // 0
+      {
+        name : 'type',
+        value : 'Tidak'
+      },
+      // 1
+      {
+        name : 'therapist',
+        value : 'Tidak'
+      },
+      // 2
+      {
+        name : 'promo',
+        value : 'Tidak'
+      },
+      // 3
+      {
+        name : 'addMember',
+        value : 'Aktif'
+      },
+      // 4
+      {
+        name : 'editMember',
+        value : 'Aktif'
+      },
+      // 5
+      {
+        name : 'absensi',
+        value : 'Tidak'
+      },
+      // 6
+      {
+        name : 'user',
+        value : 'Tidak'
+      },
+      // 7
+      {
+        name : 'addTransaction',
+        value : 'Aktif'
+      },
+      // 8
+      {
+        name : 'editTransaction',
+        value : 'Tidak'
+      },
+      // 9
+      {
+        name : 'dailyReport',
+        value : 'Aktif'
+      },
+      // 10
+      {
+        name : 'payroll',
+        value : 'Tidak'
+      },
+    ]
   }),
 
   mounted() {
@@ -84,13 +152,23 @@ export default {
 
   methods: {
     async register() {
+      if (this.registerForm.password !== this.registerForm.confirmPassword) {
+        this.$buefy.toast.open({
+          message: `Konfirmasi Password Tidak Sama`,
+          type: 'is-danger',
+        })
+        return
+      }
       try {
         // await this.$store.commit('register', this.registerForm)
         await this.$store.dispatch('auth/register', this.registerForm)
         this.confirmForm.email = this.registerForm.email
         this.step = this.steps.confirm
       } catch (error) {
-        console.log({ error })
+        this.$buefy.toast.open({
+          message: error.message,
+          type: 'is-danger',
+        })
       }
     },
 
@@ -99,15 +177,24 @@ export default {
         // await this.$store.commit('confirmRegistration', this.confirmForm)
         // await this.$store.commit('login', this.registerForm)
         await this.$store.dispatch('auth/confirmRegistration', this.confirmForm)
-        await this.$store.dispatch('auth/login', this.registerForm)
-        const result = await this.$axios.post(`${this.$config.BASE_URL}/api/user`, this.registerForm)
+        // await this.$store.dispatch('auth/login', this.registerForm)
+        const result = await this.$axios.post(`${this.$config.BASE_URL}/api/user`, {
+          email : this.registerForm.email,
+          password : this.registerForm.password,
+          user: this.user,
+          }
+        )
         if(result.status === 200) {
           // this.$store.commit('setJwt',result.data.data)
           localStorage.setItem('userJwt', result.data.data.jwt)
-          window.location.replace("/cashier");
+          this.$router.push('/auth/cashier')
+          // window.location.replace("/auth");
         }
       } catch (error) {
-        console.log({ error })
+        this.$buefy.toast.open({
+          message: error.message,
+          type: 'is-danger',
+        })
       }
     },
   },

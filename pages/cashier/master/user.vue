@@ -321,7 +321,8 @@
             }
           })
           if (response.status === 200)
-            this.user = response.data.data.permission
+            if( response.data.data.permission !== undefined)
+              this.user = response.data.data.permission
         } catch (error) {
           this.$buefy.snackbar.open({
             message: 'Session Expired ',

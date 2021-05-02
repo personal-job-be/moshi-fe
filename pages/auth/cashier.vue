@@ -5,26 +5,26 @@
       <h1 class="title is-3">Login</h1>
       <div v-if="!$auth.isAuthenticated">
         <span class="title is-6">Email :</span>
-        <input
+        <b-input
           v-model="form.email"
           type="email"
           placeholder="Email"
           class="form-control"
         />
-        <br />
-        <div class="mt-5">
+        <div class="mt-1">
           <span class="title is-6">Password :</span>
-          <input
+          <b-input
             v-model="form.password"
             type="password"
             placeholder="Password"
             class="form-control"
+            password-reveal
           />
         </div>
         <br />
         <b-button class="is-primary mt-3" @click="login">Login</b-button>
         <br /> 
-        <nuxt-link to="/forgot" class="mt-3">Forgot password ?</nuxt-link>
+        <nuxt-link to="/auth/forgot" class="mt-3">Forgot password ?</nuxt-link>
         <br />
         <nuxt-link to="/auth/register" class="mt-3"
           >Need an account? Register</nuxt-link

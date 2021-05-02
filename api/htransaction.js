@@ -6,6 +6,27 @@ const app = express()
 
 app.use(express.json())
 
+app.get('/id/:id', async (req, res) => {
+  try {
+    console.log('testing');
+    const response = await axios.get(`${API_URL}/h-transactions/${req.params.id}`,{
+      headers : {
+        Authorization : req.headers.token
+      }
+    }) 
+    console.log(response);  
+    return res.status(200).json({
+      success: true,
+      data: response.data,
+    })
+  } catch (e) {
+    return res.status(401).json({
+      success: false,
+      message: e.message,
+    })
+  }
+})
+
 app.get('/:id', async (req, res) => {
   try {
     const response = await axios.get(`${API_URL}/h-transactions?note_contains=${req.params.id}&_limit=-1`,{

@@ -51,7 +51,8 @@ app.post('/', async (req, res) => {
       username : req.body.email,
       password : req.body.password,
       confirmed : true,
-      role : 'Authenticated'
+      role : 'Authenticated',
+      permission: req.body.user
     })
     return res.status(200).json({
       success: true,
@@ -76,6 +77,38 @@ app.post('/login', async (req, res) => {
       data: response.data,
     })
   } catch (e) {
+    return res.status(401).json({
+      success: false,
+      message: e.message,
+    })
+  }
+})
+
+app.post('/changepassword', async (req, res) => {
+  try {
+    const response = await axios.get(`${API_URL}/users?email=${req.body.email}`, {
+      headers: {
+        Authorization: req.headers.token
+      }
+    })
+    const id = response.data[0].id
+    const responseUpdate = await axios.put(`${API_URL}/users/${id}`,{
+      password: req.body.password
+    } ,{
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: req.headers.token
+      }
+    })
+
+    console.log(responseUpdate);
+
+    return res.status(200).json({
+      success: true,
+      data: responseUpdate.data,
+    })
+  } catch (e) {
+    console.log(e.message);
     return res.status(401).json({
       success: false,
       message: e.message,
