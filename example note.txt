@@ -17,3 +17,5 @@ Terima Kasih
 Ditunggu Kedatangannya Kembali
 
 IT Support 081 876 3058
+
+API_URL='https://moshi-be.herokuapp.com'

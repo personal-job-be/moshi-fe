@@ -90,7 +90,6 @@ app.get('/salary/:start/:end', async (req, res) => {
         Authorization : req.headers.token
       }
     })
-     
     return res.status(200).json({
       success: true,
       data: response.data,
