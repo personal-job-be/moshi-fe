@@ -1,13 +1,26 @@
 <template>
   <div class="section">
-    <div class="title is-5">Transaction {{htrans.note}}
-      <b-button v-if="permission !== null && permission.filter(p => p.name ==='editTransaction' && p.value === 'Aktif').length > 0" class="is-primary mb-2 ml-3" @click="searchTrans">              
-        <b-icon
-            icon="magnify"
-            size="is-small"
-            class="mr-2">
-        </b-icon>Pencarian Transaksi
-      </b-button>
+    <div class="title is-5">
+      <div class="columns">
+        <div class="column is-4">Transaction {{htrans.note}}</div>
+        <div class="column is-4">
+          <b-button v-if="permission !== null && permission.filter(p => p.name ==='editTransaction' && p.value === 'Aktif').length > 0" class="is-primary mb-2 ml-3" @click="searchTrans">              
+            <b-icon
+                icon="magnify"
+                size="is-small"
+                class="mr-2">
+            </b-icon>Pencarian Transaksi
+          </b-button>
+        </div>
+        <div class="column">
+          <b-datepicker
+            v-model="dateSelected"
+            placeholder="Click to select..."
+            icon="calendar-today"
+          >
+          </b-datepicker>
+        </div>
+      </div>
     </div>
     
     <div class="columns">
@@ -230,6 +243,7 @@ export default {
   },
   data() {
     return {
+      dateSelected : new Date(),
       // dropdown data
       promos : {},
       therapists : {},
@@ -448,7 +462,8 @@ export default {
             this.htrans.member = this.member.id
             this.htrans.name = this.member.name
             this.htrans.user = this.user
-            this.htrans.date = new Date()
+            // this.htrans.date = new Date()
+            this.htrans.date = this.dateSelected
             const resHTrans = await this.$axios.post(`${this.$config.BASE_URL}/api/htrans`,this.htrans,{
               headers : {
                 token : this.userJwt
