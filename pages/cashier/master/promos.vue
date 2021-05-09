@@ -167,6 +167,7 @@ export default {
         if(response.status === 200){
           this.isLoading = false
           if(response.data.data.length === 0) this.isEmpty = true
+          else this.isEmpty = false
           this.promos = []
           for (let index = 0; index < response.data.data.length; index++) {
             const singlePromo = {...response.data.data[index], ...{isModified : false}}
@@ -193,7 +194,7 @@ export default {
         trapFocus: true,
         width: 1080,
         events: {
-          'promoAdded': () => this.fetchData()
+          'promoAdded': async () => await this.fetchData()
         }
       })
     },
@@ -252,6 +253,7 @@ export default {
 
     async delete(row) {
       try {
+        this.isLoading = true
         const response = await this.$axios.put(`${this.$config.BASE_URL}/api/promos/delete/${row.id}`,{}, {
           headers: {
             token: this.userJwt,
@@ -263,6 +265,7 @@ export default {
             type: 'is-danger',
           })
           row.isModified = false
+          this.isLoading = false
           this.fetchData()
         }
       } catch (error) {

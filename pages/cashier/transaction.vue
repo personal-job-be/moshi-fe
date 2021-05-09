@@ -230,6 +230,7 @@
         <b-button class="is-primary" @click="fetchData">Transaksi Baru</b-button>
       </div>
     </div>
+    <b-loading :is-full-page="isFullPage" v-model="isFullLoading" :can-cancel="false"></b-loading>
   </div>
 </template>
 
@@ -276,7 +277,9 @@ export default {
       defaultSortDirection: 'asc',
       currentPage: 1,
       perPage: 10,
-      permission: null
+      permission: null,
+      isFullLoading: false,
+      isFullPage: true,
     }
   },
 
@@ -323,7 +326,8 @@ export default {
     },
 
     async notePrint() {
-      const day = new Date()
+      // const day = new Date()
+      const day= this.dateSelected
       const date = day.getDate().toString().length === 1 ? '0'+ day.getDate().toString() : day.getDate()
       let getMonth = day.getMonth() + 1
       const month = getMonth.toString().length === 1 ? '0'+ getMonth.toString() : getMonth
@@ -378,18 +382,18 @@ export default {
           },
         })
         this.types = result.data.data.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
-        this.massage.type = this.types.filter(type => type.name.toUpperCase() === 'FULL BODY 60 MIN')
+        this.massage.type = this.types.filter(type => type.name.toUpperCase() === 'FULL BODY 60"')
           .map(type => type.id)
           .reduce(type => type)
 
       } catch (error) {
         this.isLoading = false
           this.$buefy.snackbar.open({
-            message: 'Session Expired ',
+            message: 'Session Expired lho',
             queue: false,
           })
-        this.$store.dispatch('auth/logout') 
-        this.$router.push('/')
+        // this.$store.dispatch('auth/logout') 
+        // this.$router.push('/')
       }
       
     },
@@ -458,11 +462,14 @@ export default {
       {
         try {
           if (this.isFirst) {
+            this.isFullLoading = true
             this.htrans.note = await this.notePrint()
             this.htrans.member = this.member.id
             this.htrans.name = this.member.name
             this.htrans.user = this.user
             // this.htrans.date = new Date()
+            // const dateSelected = this.dateSelected
+            // dateSelected.setDate(dateSelected.getDate() + 1)
             this.htrans.date = this.dateSelected
             const resHTrans = await this.$axios.post(`${this.$config.BASE_URL}/api/htrans`,this.htrans,{
               headers : {
@@ -485,10 +492,14 @@ export default {
               })
               if (resDTrans.status === 200) {
                 this.fetchTrans()
+                this.isFullLoading = false
               }
+              else this.isFullLoading = false
             }
+            else this.isFullLoading = false
           }
           else {
+            this.isFullLoading = true
             const resDTrans = await this.$axios.post(`${this.$config.BASE_URL}/api/dtrans`, {
               h_transaction : this.massage.note,
               therapist : this.massage.therapist,
@@ -502,10 +513,11 @@ export default {
             })
             if (resDTrans.status === 200) {
               this.fetchTrans()
+              this.isFullLoading = false
             }
           }
         } catch (error) {
-            this.isLoading = false
+            this.isFullLoading = false
             this.$buefy.snackbar.open({
               message: 'Session Expired ',
               queue: false,

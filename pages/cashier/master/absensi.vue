@@ -43,6 +43,7 @@
       <div class="is-flex is-justify-content-center">
         <b-button class="is-success" @click="save">Simpan</b-button>
       </div>
+      <b-loading :is-full-page="isFullPage" v-model="isLoading" :can-cancel="false"></b-loading>
     </div>
   </div>
 </template>
@@ -59,6 +60,8 @@ export default {
       idAbsence : null,
       userJwt : localStorage.getItem('userJwt'),
       isExist : false,
+      isFullPage: true,
+      isLoading: false,
       presence : {},
       user : localStorage.getItem('userId')
     }
@@ -108,16 +111,20 @@ export default {
           user : this.user
         }
         try {
+          this.isLoading = true
           const response = await this.$axios.post(`${this.$config.BASE_URL}/api/absence`,this.presence,{
               headers : {
                 token : this.userJwt
               }
             })
           if(response.status === 200)
+          {
             this.$buefy.toast.open({
               message: `Data Saved Successfully`,
               type: 'is-success',
             })
+            this.isLoading = false
+          }
         } catch (error) {
             this.isLoading = false
             this.$buefy.snackbar.open({
@@ -134,17 +141,20 @@ export default {
           user : this.user
         }
         try {
-          console.log(this.idAbsence);
+          this.isLoading = true
           const response = await this.$axios.put(`${this.$config.BASE_URL}/api/absence/${this.idAbsence}`,this.presence,{
             headers : {
               token : this.userJwt
             }
           })
           if(response.status === 200)
+          {
             this.$buefy.toast.open({
               message: `Data Saved Successfully`,
               type: 'is-success',
             })
+            this.isLoading = false
+          }
         } catch (error) {
             this.isLoading = false
             this.$buefy.snackbar.open({
@@ -159,6 +169,7 @@ export default {
 
     async getAbsence() {
       try {
+        this.isLoading = true
         if(this.choosenTherapist !== null)
         {
           for (let index = 0; index < this.dayOfMonth; index++) 
@@ -177,11 +188,13 @@ export default {
             this.isSwitchedCustom = this.isSwitchedCustom.map(absence => absence === "1" ? "Masuk" : "Tidak" )
             this.isExist = true
             this.idAbsence = response.data.data.reduce(data => data).id
+            this.isLoading = false
           }
           else {
+            this.isLoading = false
             this.isExist = false
           }
-        }
+        } else this.isLoading = false
       } catch (error) {
         this.isLoading = false
         this.$buefy.snackbar.open({

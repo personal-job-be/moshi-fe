@@ -42,6 +42,7 @@
     <footer class="modal-card-foot is-justify-content-center">
         <b-button type="is-success" @click="save">Simpan</b-button>
     </footer>
+    <b-loading :is-full-page="isFullPage" v-model="isLoading" :can-cancel="false"></b-loading>
   </div>
 </template>
 
@@ -60,6 +61,8 @@ export default {
         initial : null,
         user : localStorage.getItem('userId')
       },
+      isLoading : false,
+      isFullPage: true,
       genders : [{title : 'Pria', value : true}, {title : 'Wanita', value : false}]
     }
   },
@@ -72,6 +75,7 @@ export default {
         })
       }
       else {
+        this.isLoading = true
         this.member.code = await this.createCode()
         try {
           const response = await this.$axios.post(`${this.$config.BASE_URL}/api/members`,this.member, {
@@ -84,6 +88,7 @@ export default {
               message: `Data Saved Successfully`,
               type: 'is-success',
             })
+            this.isLoading = false
             this.$emit('memberAdded')
             this.$parent.close()
           }

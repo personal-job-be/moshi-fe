@@ -27,6 +27,7 @@
     <footer class="modal-card-foot is-justify-content-center">
         <b-button type="is-success" @click="save">Simpan</b-button>
     </footer>
+    <b-loading :is-full-page="isFullPage" v-model="isLoading" :can-cancel="false"></b-loading>
   </div>
 </template>
 
@@ -40,12 +41,15 @@ export default {
         absensi : 0,
         user : localStorage.getItem('userId')
       },
+      isLoading: false,
+      isFullPage: true,
       userJwt: localStorage.getItem('userJwt')
     }
   },
   methods: {
     async save() {
       try {
+        this.isLoading = true
         const response = await this.$axios.post(`${this.$config.BASE_URL}/api/therapists`,this.therapist, {
           headers: {
             token: this.userJwt,
@@ -56,6 +60,7 @@ export default {
             message: `Data Saved Successfully`,
             type: 'is-success',
           })
+          this.isLoading = false
           this.$emit('therapistAdded')
           this.$parent.close()
         }
@@ -65,6 +70,7 @@ export default {
           message: 'Session Expired ',
           queue: false,
         })
+        this.isLoading = false
         this.$store.dispatch('auth/logout') 
         this.$router.push('/')
       }

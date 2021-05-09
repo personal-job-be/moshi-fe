@@ -155,6 +155,7 @@ export default {
         if(response.status === 200){
           this.isLoading = false
           if(response.data.data.length === 0) this.isEmpty = true
+          else this.isEmpty = false
           this.therapists = []
           for (let index = 0; index < response.data.data.length; index++) {
             const singleTherapist = {...response.data.data[index], ...{isModified : false}}
@@ -181,7 +182,7 @@ export default {
         trapFocus: true,
         width: 1080,
         events: {
-          'therapistAdded': () => this.fetchData()
+          'therapistAdded': async () => await this.fetchData()
         }
       })
     },
@@ -203,18 +204,20 @@ export default {
 
     async save(row) {
       try {
+        this.isLoading = true
         const response = await this.$axios.put(`${this.$config.BASE_URL}/api/therapists/${row.id}`,this.editedTherapist, {
           headers: {
             token: this.userJwt,
           },
         }, )  
         if(response.status === 200) {
+          await this.fetchData()
           this.$buefy.toast.open({
             message: `Data Saved Successfully`,
             type: 'is-success',
           })
           row.isModified = false
-          this.fetchData()
+          this.isLoading = false
         }
       } catch (error) {
         this.isLoading = false
@@ -240,6 +243,7 @@ export default {
 
     async delete(row) {
       try {
+        this.isLoading = true
         const response = await this.$axios.put(`${this.$config.BASE_URL}/api/therapists/delete/${row.id}`,{}, {
           headers: {
             token: this.userJwt,
@@ -252,6 +256,7 @@ export default {
           })
           row.isModified = false
           this.fetchData()
+          this.isLoading = false
         }
       } catch (error) {
         this.isLoading = false

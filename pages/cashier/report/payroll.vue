@@ -172,6 +172,7 @@
 export default {
   data() {
     return {
+      isFullPage: true,
       start: new Date(),
       end: new Date(),
       startDate : null,

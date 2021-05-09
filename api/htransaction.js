@@ -104,11 +104,15 @@ app.get('/salary/:start/:end', async (req, res) => {
 
 app.post('/', async (req, res) => {
   try {
+    const dateSelected = new Date(req.body.date)
+    console.log('before', dateSelected);
+    dateSelected.setDate(dateSelected.getDate() + 1)
+    console.log('after', dateSelected);
     const response = await axios.post(`${API_URL}/h-transactions`, {
       note : req.body.note,
       member : req.body.member,
       name : req.body.name,
-      date : req.body.date,
+      date: dateSelected,
       users_permissions_user : req.body.user
     },{
       headers : {

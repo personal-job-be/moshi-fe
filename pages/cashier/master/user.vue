@@ -189,6 +189,7 @@
       <div class="is-flex is-justify-content-center">
         <b-button class="is-success" @click="save">Simpan</b-button>
       </div>
+      <b-loading :is-full-page="isFullPage" v-model="isLoading" :can-cancel="false"></b-loading>
     </div>
   </div>
 </template>
@@ -200,6 +201,8 @@
         userList : null,
         userJwt : localStorage.getItem('userJwt'),
         choosenUser: null,
+        isFullPage: true,
+        isLoading: false,
         user: [
           // 0
           {
@@ -284,6 +287,7 @@
         if(this.choosenUser !== null)
         {
           try {
+            this.isLoading = true
             const response = await this.$axios.put(`${this.$config.BASE_URL}/api/user/permission/${this.choosenUser}`,{
               permission : this.user
             },{
@@ -292,11 +296,15 @@
               },
             })
             if (response.status === 200)
+            {
               this.$buefy.toast.open({
                 message: `Data Saved Successfully`,
                 type: 'is-success',
               })
+              this.isLoading = false
+            }
           } catch (error) {
+            this.isLoading = false
             this.$buefy.snackbar.open({
               message: 'Session Expired ',
               queue: false,
@@ -315,15 +323,20 @@
       },
       async getPermission() {
         try {
+          this.isLoading = true
           const response = await this.$axios.get(`${this.$config.BASE_URL}/api/user/findone/${this.choosenUser}`,{
             headers: {
               token: this.userJwt
             }
           })
           if (response.status === 200)
+          {
             if( response.data.data.permission !== undefined)
               this.user = response.data.data.permission
+            this.isLoading = false
+          }
         } catch (error) {
+          this.isLoading = false
           this.$buefy.snackbar.open({
             message: 'Session Expired ',
             queue: false,

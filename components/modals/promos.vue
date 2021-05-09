@@ -34,6 +34,7 @@
     <footer class="modal-card-foot is-justify-content-center">
         <b-button type="is-success" @click="save">Simpan</b-button>
     </footer>
+    <b-loading :is-full-page="isFullPage" v-model="isLoading" :can-cancel="false"></b-loading>
   </div>
 </template>
 
@@ -48,6 +49,8 @@ export default {
         user : localStorage.getItem('userId')
       },
       userJwt: localStorage.getItem('userJwt'),
+      isFullPage: true,
+      isLoading: false,
       types : [{title : 'Rp.', value : true}, {title : '%', value : false}]
     }
   },
@@ -61,12 +64,14 @@ export default {
       }
       else {
         try {
+          this.isLoading = true
           const response = await this.$axios.post(`${this.$config.BASE_URL}/api/promos`,this.promo, {
             headers: {
               token: this.userJwt,
             },
           }, )  
           if(response.status === 200) {
+            this.isLoading = false
             this.$buefy.toast.open({
               message: `Data Saved Successfully`,
               type: 'is-success',

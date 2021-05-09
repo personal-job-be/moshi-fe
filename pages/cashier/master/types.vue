@@ -154,6 +154,7 @@ export default {
         if(response.status === 200){
           this.isLoading = false
           if(response.data.data.length === 0) this.isEmpty = true
+          else this.isEmpty = false
           this.types = []
           for (let index = 0; index < response.data.data.length; index++) {
             const singleType = {...response.data.data[index], ...{isModified : false}}
@@ -180,7 +181,7 @@ export default {
         trapFocus: true,
         width: 1080,
         events: {
-          'typeAdded': () => this.fetchData()
+          'typeAdded': async () => await this.fetchData()
         }
       })
     },
@@ -239,6 +240,7 @@ export default {
 
     async delete(row) {
       try {
+        this.isLoading = true
         const response = await this.$axios.put(`${this.$config.BASE_URL}/api/types/delete/${row.id}`,{}, {
           headers: {
             token: this.userJwt,
@@ -250,6 +252,7 @@ export default {
             type: 'is-danger',
           })
           row.isModified = false
+          this.isLoading = false
           this.fetchData()
         }
       } catch (error) {
