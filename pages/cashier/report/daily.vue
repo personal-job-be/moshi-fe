@@ -71,7 +71,11 @@
             <div class="has-text-centered">No records</div>
         </template>
       </b-table>
-
+      <div class="is-flex is-justify-content-end">
+        <div class="title is-3">
+          {{ `Rp. ${parseFloat(grandTotal).toLocaleString('id-ID')}` }}
+        </div>
+      </div>
       <b-loading :is-full-page="isFullPage" v-model="isLoading" :can-cancel="false"></b-loading>
     </div>
   </div>
@@ -97,11 +101,13 @@ export default {
       defaultSortDirection: 'asc',
       currentPage: 1,
       perPage: 10,
+      grandTotal : 0,
     }
   },
   methods: {
     async search() {
       try {
+        this.grandTotal = 0
         this.isLoading = true
         this.transactions = []
         const date = this.dateSelected.getDate().toString().length === 1 ? 
@@ -143,6 +149,7 @@ export default {
               }
             }).reduce((prev,current) => prev + current)
             singleTrans = {...singleTrans, ...{total}}
+            this.grandTotal += total
           }
           this.transactions.push(singleTrans)
           console.log(this.transactions);
