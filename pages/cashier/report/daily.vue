@@ -124,7 +124,6 @@ export default {
           }
         })
 
-        console.log(this.transactions);
         // Data Arrangement
         for(let i=0; i<response.data.data.length; i++) {
           const singleTrans = {}
@@ -137,7 +136,7 @@ export default {
               token : this.userJwt
             }
           })
-          if(dtrans.status === 200)
+          if(dtrans.status === 200 && dtrans.data.data.length > 0 )
           {
             singleTrans.detail = dtrans.data.data
             const total = singleTrans.detail.map(detail=> {
@@ -150,9 +149,8 @@ export default {
             }).reduce((prev,current) => prev + current)
             singleTrans = {...singleTrans, ...{total}}
             this.grandTotal += total
+            this.transactions.push(singleTrans)
           }
-          this.transactions.push(singleTrans)
-          console.log(this.transactions);
         }
         this.isLoading = false
       } catch (error) {

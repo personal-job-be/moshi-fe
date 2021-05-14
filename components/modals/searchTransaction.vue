@@ -106,7 +106,9 @@ export default {
           }
         })
         this.isLoading = false
-        this.trans = response.data.data
+        this.trans = response.data.data.filter(htrans => htrans.d_transactions.length > 0)
+        if (this.trans.length > 0) this.isEmpty = false
+        else this.isEmpty = true
       } catch (error) {
           this.isLoading = false
           this.$buefy.snackbar.open({

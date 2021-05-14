@@ -57,7 +57,6 @@ export default {
           window.location.replace("/cashier");
         }
       } catch (error) {
-        console.log({ error })
       }
     },
   },

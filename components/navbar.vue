@@ -83,7 +83,6 @@ export default {
             token: this.userJwt
           }
         })  
-        console.log(response.data.data.permission);
         if(response.status === 200) {
           this.permission = response.data.data.permission
         }

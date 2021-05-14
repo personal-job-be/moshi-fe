@@ -12,14 +12,14 @@
             </b-icon>Pencarian Transaksi
           </b-button>
         </div>
-        <div class="column">
+        <!-- <div class="column">
           <b-datepicker
             v-model="dateSelected"
             placeholder="Click to select..."
             icon="calendar-today"
           >
           </b-datepicker>
-        </div>
+        </div> -->
       </div>
     </div>
     
@@ -291,7 +291,6 @@ export default {
           token: this.userJwt
         }
       })  
-      console.log(response.data.data.permission);
       if(response.status === 200) {
         this.permission = response.data.data.permission
       }
@@ -467,9 +466,6 @@ export default {
             this.htrans.member = this.member.id
             this.htrans.name = this.member.name
             this.htrans.user = this.user
-            // this.htrans.date = new Date()
-            // const dateSelected = this.dateSelected
-            // dateSelected.setDate(dateSelected.getDate() + 1)
             this.htrans.date = this.dateSelected
             const resHTrans = await this.$axios.post(`${this.$config.BASE_URL}/api/htrans`,this.htrans,{
               headers : {
@@ -658,7 +654,6 @@ export default {
 
     transactionUpdate(data) {
       this.fetchData()
-      console.log(data);
       this.member = data.member
       this.massage.note = data.id
       this.htrans.note = data.note

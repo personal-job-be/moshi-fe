@@ -182,7 +182,6 @@ export default {
             const singleMember = {...response.data.data[index], ...{isModified : false}}
             this.members.push(singleMember)            
           }
-          console.log(this.members);
         }
       } catch (error) {
         this.isLoading = false

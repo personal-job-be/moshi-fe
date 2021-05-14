@@ -83,7 +83,6 @@
     methods: {
       async forgot() {
         try {
-          console.log(this.form);
           await this.$store.dispatch('auth/forgot', this.form)
 
           this.$buefy.toast.open({
