@@ -41,6 +41,9 @@
                 <b-navbar-item v-if="permission.filter(p => p.name ==='user' && p.value === 'Aktif').length > 0" href="/cashier/master/user">
                     User Management
                 </b-navbar-item>
+                <b-navbar-item v-if="permission.filter(p => p.name ==='user' && p.value === 'Aktif').length > 0" href="/cashier/master/logs">
+                    Logs
+                </b-navbar-item>
             </b-navbar-dropdown>
             <b-navbar-item v-if="$auth.isAuthenticated && permission !== null && permission.filter(p => p.name ==='addTransaction' && p.value === 'Aktif').length > 0" href="/cashier/transaction">
                     Transaksi

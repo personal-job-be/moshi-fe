@@ -257,6 +257,7 @@ export default {
       htrans : {
         total : 0
       },
+      grandTotal : 0,
       // dtrans 
       dtrans : [],
       editedDtrans : {
@@ -410,6 +411,7 @@ export default {
           this.isLoading = false
           if(result.data.data.length === 0) this.isEmpty = true
           this.dtrans = []
+          this.grandTotal = 0
           for (let index = 0; index < result.data.data.length; index++) {
             let singleTrans = {...result.data.data[index], ...{isModified : false}}
             if(result.data.data[index].promo.type) {
@@ -421,8 +423,8 @@ export default {
               singleTrans = {...singleTrans, ...{subtotal}}
             }
             this.dtrans.push(singleTrans)
-            this.htrans.total = this.dtrans.reduce((prev,current) => prev + current.subtotal, 0) 
           }
+          this.htrans.total = this.dtrans.reduce((prev,current) => prev + current.subtotal, 0) 
         }
       } catch (error) {
         this.isLoading = false

@@ -59,7 +59,8 @@ export default {
     '~/api/members',
     '~/api/htransaction',
     '~/api/dtransaction',
-    '~/api/absence'
+    '~/api/absence',
+    '~/api/logs'
   ],
 
   publicRuntimeConfig: {
