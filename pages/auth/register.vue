@@ -75,6 +75,7 @@ const steps = {
 }
 
 export default {
+  layout: "public",
   data: () => ({
     steps: { ...steps },
     step: steps.register,

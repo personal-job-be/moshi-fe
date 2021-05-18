@@ -26,9 +26,9 @@
         <br /> 
         <nuxt-link to="/auth/forgot" class="mt-3">Forgot password ?</nuxt-link>
         <br />
-        <nuxt-link to="/auth/register" class="mt-3"
+        <!-- <nuxt-link to="/auth/register" class="mt-3"
           >Need an account? Register</nuxt-link
-        >
+        > -->
       </div>
     </div>
   </div>
@@ -36,6 +36,7 @@
 
 <script>
 export default {
+  layout: "public",
   data: () => ({
     form: {
       email: '',
@@ -57,6 +58,10 @@ export default {
           window.location.replace("/cashier");
         }
       } catch (error) {
+        this.$buefy.toast.open({
+          message: error.message,
+          type: 'is-danger',
+        })
       }
     },
   },

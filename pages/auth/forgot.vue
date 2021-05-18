@@ -49,14 +49,15 @@
       </div>
       <nuxt-link to="/auth/cashier" class="mt-3">Have an account? Login</nuxt-link>
       <br />
-      <nuxt-link to="/auth/register" class="mt-3"
-        >Need an account? Register</nuxt-link>
+      <!-- <nuxt-link to="/auth/register" class="mt-3"
+        >Need an account? Register</nuxt-link> -->
     </div>
   </div>
 </template>
 
 <script>
   export default {
+    layout: "public",
     data() {
       return {
         form: {

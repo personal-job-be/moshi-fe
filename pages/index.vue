@@ -132,6 +132,7 @@ Dimana berdasarkan teory bahwa bagian-bagian tubuh tersebut terhubung dengan sel
 import Carousel from "@/components/carousel"
 import CardPackage from "@/components/cardPackage"
 export default {
+  layout:"public",
   components: {
     Carousel,
     CardPackage,

@@ -14,6 +14,7 @@
 
 <script>
 export default {
+  layout:"public",
   data() {
     return {
       gallery: [

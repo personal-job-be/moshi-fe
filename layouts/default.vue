@@ -1,8 +1,13 @@
 <template>
-  <div style="background-image: url('logo.png')">
-    <navbar />
-    <Nuxt />
-    <footer-page class="mt-3"/>
+  <div>
+    <div v-if="$auth.isAuthenticated"  style="background-image: url('logo.png')">
+      <navbar />
+      <Nuxt />
+      <footer-page class="mt-3"/>
+    </div>
+    <div v-else>
+      
+    </div>
   </div>
 </template>
 <script>
@@ -19,6 +24,7 @@ export default {
     }
   },
   mounted () {
+    if (!this.$auth.isAuthenticated) this.$router.push('/')
   },
 
   methods: {
