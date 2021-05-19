@@ -40,6 +40,8 @@
     </div>
     <div class="has-text-centered has-text-light">
       created by reza limena WA - 0818763058
+      <br>
+      <a href="https://rezalimena.com/" target="_blank" class="a-link">www.rezalimena.com</a>
     </div>
   </div>
 </template>
@@ -66,10 +68,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 .footer-page {
   background-color: #517f2f;
+}
+
+.a-link{
+  color: white;
 }
 
 </style>

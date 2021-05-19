@@ -49,6 +49,9 @@
           sistem web dengan background saya sebagai IT staff dari salah satu perusahaan keuangan Singapore, untuk lebih lanjut anda bisa 
           hubungi saya di nomer WA - 0818763058
         </span>
+        <br>
+        <br>
+        <a href="https://rezalimena.com/" target="_blank" class="a-link">www.rezalimena.com</a>
       </div>
     </div>
   </div>
@@ -66,5 +69,8 @@ export default {
   /* color: #a5a251; */
   color : #517f2f;
 
+}
+.a-link{
+  color: black;
 }
 </style>
