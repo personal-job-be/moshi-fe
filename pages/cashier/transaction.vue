@@ -384,6 +384,7 @@ export default {
         this.types = result.data.data.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
         if(this.types.length > 0)
           this.types = this.types.filter(type => type.isvalid)
+        console.debug(this.types)
         this.massage.type = this.types.filter(type => type.name.toUpperCase() === 'FULL BODY 60"')
           .map(type => type.id)
           .reduce(type => type)
