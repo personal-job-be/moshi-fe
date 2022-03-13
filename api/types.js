@@ -8,7 +8,7 @@ app.use(express.json())
 
 app.get('/all', async (req, res) => {
   try {
-    const response = await axios.get(`${API_URL}/types?isDeleted=false&isValid=true`, {
+    const response = await axios.get(`${API_URL}/types?isDeleted=false&isvalid=true`, {
       headers : {
         Authorization : req.headers.token
       }
