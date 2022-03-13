@@ -382,11 +382,14 @@ export default {
           },
         })
         this.types = result.data.data.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
+        if(this.types.length > 0)
+          this.types = this.types.filter(type => type.isvalid)
         this.massage.type = this.types.filter(type => type.name.toUpperCase() === 'FULL BODY 60"')
           .map(type => type.id)
           .reduce(type => type)
 
       } catch (error) {
+        console.debug(error)
         this.isLoading = false
           this.$buefy.snackbar.open({
             message: 'Session Expired lho',
