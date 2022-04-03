@@ -149,7 +149,7 @@ export default {
             'Aromatherapy'
           ],
           duration : '110 Menit',
-          price : 110000
+          price : 130000
         },
         {
           title : 'Facial Package',
@@ -160,7 +160,7 @@ export default {
             'Aromatherapy'
           ],
           duration : '80 Menit',
-          price : 90000
+          price : 110000
         },
         {
           title : 'Ear Candle Package',
@@ -171,7 +171,7 @@ export default {
             'Aromatherapy'
           ],
           duration : '70 Menit',
-          price: 90000
+          price: 110000
         },
         {
           title : 'Scraping Package',
@@ -182,37 +182,37 @@ export default {
             'Aromatherapy'
           ],
           duration : '70 Menit',
-          price : 80000
+          price : 100000
         }
       ],
       fullBodyMassage : [
         {
           title : 'Full Body Massage 60"',
           duration : '60 Menit',
-          price : 60000,
+          price : 80000,
         },
         {
           title : 'Full Body Massage 90"',
           duration : '90 Menit',
-          price : 90000,
+          price : 110000,
         },
         {
           title : 'Full Body Massage 120"',
           duration : '120 Menit',
-          price : 120000,
+          price : 150000,
         },
       ],
       reflexology: [
         {
-          title : 'Refleksi 40"',
-          duration : '40 Menit',
-          price : 40000,
+          title : 'Refleksi 60"',
+          duration : '60 Menit',
+          price : 80000,
         },
-        {
-          title : 'Refleksi 50"',
-          duration : '50 Menit',
-          price : 50000,
-        },
+      //   {
+      //     title : 'Refleksi 50"',
+      //     duration : '50 Menit',
+      //     price : 50000,
+      //   },
       ]
     }
   },
